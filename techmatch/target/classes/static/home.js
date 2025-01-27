@@ -102,3 +102,28 @@ function updateEventList(events) {
         eventList.appendChild(col);
     });
 }
+
+function registerForEvent(eventID) {
+    const userID = 'USER-000001'; // Replace with dynamic user session
+    if (!userID) {
+        alert("You must be logged in to register for events.");
+        return;
+    }
+    fetch(`/register`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ userID, eventID }),
+    })
+        .then((response) => {
+            if (response.ok) {
+                alert("Successfully registered for the event!");
+                location.reload();
+            } else {
+                alert("Failed to register. Please try again.");
+            }
+        })
+        .catch((error) => console.error("Registration error:", error));
+}
+

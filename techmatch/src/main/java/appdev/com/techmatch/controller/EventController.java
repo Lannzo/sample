@@ -86,7 +86,17 @@ public Map<String, Object> getEventDetails(@PathVariable String id) {
     return response;
 }
 
-    
+@GetMapping("/event/{id}")
+public String getEventDetails(@PathVariable("id") String id, Model model) {
+    try {
+        Event event = eventService.getEventById(id);
+        model.addAttribute("event", event);
+    } catch (Exception e) {
+        System.err.println("Error fetching event details: " + e.getMessage());
+        return "redirect:/home"; // Redirect to home if event not found
+    }
+    return "event-details";
+}
 
     @GetMapping("/create")
     public String showEventForm(Model model) {

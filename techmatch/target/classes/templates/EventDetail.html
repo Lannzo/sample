@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Event Details</title>
+    <link rel="stylesheet" href="/home.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 th:text="${event.eventName}" class="text-center"></h1>
+        <div class="card">
+            <div class="card-body">
+                <p class="card-text"><strong>Topic:</strong> 
+                    <span th:each="topic : ${event.topics}" th:text="${topic.name} + ', '"></span>
+                <p><strong>Type:</strong> <span th:text="${event.eventType}"></span></p>
+                <p><strong>Location:</strong> <span th:text="${event.location}"></span></p>
+                <p><strong>Date:</strong> <span th:text="${event.startDate}"></span> to <span th:text="${event.endDate}"></span></p>
+                <p><strong>Description:</strong> <span th:text="${event.description}"></span></p>
+                <p><strong>Capacity:</strong> <span th:text="${event.capacity}"></span></p>
+                <p><strong>Time:</strong> <span th:text="${event.startTime}"></span> to <span th:text="${event.endTime}"></span></p>
+                <p><strong>Ticket:</strong> <span th:text="${event.isFree}"></span></p>
+                <p><strong>Organization:</strong> <span th:text="${event.organization}"></span></p>
+
+
+            </div>
+        </div>
+        <div class="mt-4 text-center">
+            <button class="btn btn-warning" id="registerButton" th:onclick="'registerForEvent(' + ${event.eventID} + ')'">
+                Register
+            </button>
+        </div>
+    </div>
+    <script src="/home.js"></script>
+</body>
+</html>

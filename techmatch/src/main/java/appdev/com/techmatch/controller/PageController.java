@@ -12,7 +12,6 @@ public class PageController {
         return "signup"; 
     }
 
-
     @GetMapping("/create")
     public String createEventPage() {
         return "create-event";
